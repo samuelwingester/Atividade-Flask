@@ -1,23 +1,26 @@
 import json
 import os
 
-PASTA = "storage"
-CAMINHO_ARQUIVO = os.path.join(PASTA, "biblioteca.json")
+class Data:
+    data = None
 
-def inicializar_diretorio():
-    if not os.path.exists(PASTA):
-        os.makedirs(PASTA)
+    def __init__(self, dirpath = "storage", name = "biblioteca.json"):
+        self.path = os.path.join(dirpath, name)
 
-def salvar_no_arquivo(lista_dados):
-    inicializar_diretorio()
-    with open(CAMINHO_ARQUIVO, "w", encoding="utf-8") as f:
-        json.dump(lista_dados, f, ensure_ascii=False, indent=4)
+        if not os.path.exists(dirpath):
+            os.makedirs(dirpath)
 
-def carregar_do_arquivo():
-    if os.path.exists(CAMINHO_ARQUIVO):
+        self.data = self.load()
+
+    def save(self, data):
+        with open(self.path, "w", encoding="utf-8") as f:
+            json.dump(data, f, ensure_ascii=False, indent=4)
+
+        self.data = data
+
+    def load(self):
         try:
-            with open(CAMINHO_ARQUIVO, "r", encoding="utf-8") as f:
+            with open(self.path, "r", encoding="utf-8") as f:
                 return json.load(f)
         except (json.JSONDecodeError, FileNotFoundError):
             return []
-    return []

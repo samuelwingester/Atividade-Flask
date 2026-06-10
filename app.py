@@ -1,5 +1,4 @@
-from flask import Flask, jsonify, request
-from data import *
+from flask import Flask, jsonify, request, render_template, redirect, url_for
 
 from library import Library
 
@@ -7,7 +6,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def root():
-    return ("ok", 200)
+    return redirect(url_for('Biblioteca'))
 
 @app.route('/biblioteca', methods=['GET', "POST"])
 @app.route('/biblioteca/<isbn>', methods=['GET', 'DELETE', 'PUT'])
@@ -31,6 +30,11 @@ def Biblioteca(isbn=None):
         return lib.UpdateBook(isbn)
     
     return jsonify({"message":"Requisição recusada"}), 503
+
+@app.route('/biblioteca/criar', methods=['GET'])
+def BibliotecaCriar():
+    return render_template('create.html'), 200
+
 
 if __name__ == "__main__":
     app.run(debug=True)

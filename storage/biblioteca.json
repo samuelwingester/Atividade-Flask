@@ -1,35 +1,24 @@
 [
     {
-        "isbn": "978-8535914849",
-        "titulo": "1984",
-        "autor": "George Orwell",
-        "genero": "hahaha",
-        "ano_publicacao": 1949,
-        "editora": "Companhia das Letras",
-        "paginas": 416,
-        "status": "disponivel",
-        "localizacao": "Estante A1, Prateleira 2"
+        "isbn": "123123",
+        "status": "1241",
+        "paginas": "1244",
+        "ano_publicacao": "1244",
+        "titulo": "agdfhsfh",
+        "autor": "hsghd",
+        "genero": "hsstht",
+        "editora": "shts",
+        "localizacao": "htsht"
     },
     {
-        "isbn": "978-8535923524669",
-        "titulo": "1984",
-        "autor": "George Orwell",
-        "genero": "hahaha",
-        "ano_publicacao": 1949,
-        "editora": "Companhia das Letras",
-        "paginas": 416,
-        "status": "disponivel",
-        "localizacao": "Estante A1, Prateleira 2"
-    },
-    {
-        "isbn": "123",
-        "titulo": "1984",
-        "autor": "GATSNGNEll",
-        "genero": "hahaha",
-        "ano_publicacao": 1949,
-        "editora": "Companhia das Letras",
-        "paginas": 416,
-        "status": "disponivel",
-        "localizacao": "Estante A1, Prateleira 2"
+        "isbn": "1241",
+        "status": "124135",
+        "paginas": "1235",
+        "ano_publicacao": "13413",
+        "titulo": "112413",
+        "autor": "124134",
+        "genero": "14141",
+        "editora": "1241413",
+        "localizacao": "14134214"
     }
 ]

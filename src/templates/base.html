@@ -6,13 +6,9 @@
     <title>Document</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous"><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
-<style>
-body{
-    margin: 40px;
-    background-color: #272a2e;
-}
-</style>
+
 {# gambiarra feia #}
 {% set format = {
     'isbn':'ISBN',
@@ -25,6 +21,7 @@ body{
     'localizacao':'Localização',
     'ano_publicacao':'Ano Publicação'
 }%}
+
 <body>
     <div class="table-responsive">
         <table class="table table-striped table-hover table-bordered table-dark">
@@ -32,6 +29,7 @@ body{
                 {% for key in data[0].keys(): %}
                     <th class="text-center">{{ format[key] }}</th>
                 {% endfor %}
+                <th class="text-center" style="padding: 2px 0;">Ação</th>
             </thead>
             <tbody class="table-group-divider">
                 {% for book in data: %}
@@ -39,6 +37,11 @@ body{
                         {% for value in book.values(): %}
                             <td class="text-center">{{ value }}</td>
                         {% endfor %}
+                        <td class="text-center" style="padding: 2px 0;display: flex;justify-content: center;">
+                            <form action=" {{ "biblioteca/deletar/" + book["isbn"] }} "  method="POST" style="width: fit-content;">
+                                <input type="submit" class="form-control-sm" class="button" value="Deletar">
+                            </form>
+                        </td>
                     </tr>
                 {% endfor %}
             </tbody>

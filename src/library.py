@@ -51,12 +51,12 @@ class Library:
         index = self.FindIndex(isbn)
 
         if index is None:
-            return jsonify({"message":"Recurso nao localizado"}), 404
+            return {"message":"Recurso nao localizado"}, 404
 
         self.data.pop(index)
         Data().save(self.data)
 
-        return jsonify({"message":"Recuro deletado com sucesso"}), 200
+        return {"message":"Recuro deletado com sucesso"}, 200
 
     def UpdateBook(self, isbn):
         newinfo = request.get_json()

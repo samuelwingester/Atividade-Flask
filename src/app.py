@@ -3,6 +3,7 @@ from flask import Flask, jsonify, request, render_template, redirect, url_for
 from library import Library
 
 app = Flask(__name__)
+app.config["SECRET_KEY"] = "asojfcb9862qr47v"
 
 @app.route('/')
 def root():
@@ -34,6 +35,14 @@ def Biblioteca(isbn=None):
 @app.route('/biblioteca/criar', methods=['GET'])
 def BibliotecaCriar():
     return render_template('create.html'), 200
+
+@app.route('/biblioteca/deletar/<isbn>', methods=['POST'])
+def BibliotecaDeletar(isbn):
+    lib = Library()
+
+    status = lib.DeleteBook(isbn)
+
+    redirect(url_for('Biblioteca'), status[1])
 
 
 if __name__ == "__main__":

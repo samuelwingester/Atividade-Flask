@@ -5,6 +5,7 @@ class Data:
     data = None
 
     def __init__(self, dirpath = "storage", name = "biblioteca.json"):
+        dirpath = os.path.join(os.path.dirname(__file__), "..", dirpath)
         self.path = os.path.join(dirpath, name)
 
         if not os.path.exists(dirpath):

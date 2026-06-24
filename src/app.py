@@ -42,8 +42,21 @@ def BibliotecaDeletar(isbn):
 
     status = lib.DeleteBook(isbn)
 
-    redirect(url_for('Biblioteca'), status[1])
+    redirect(url_for('Biblioteca'))
 
+@app.route('/biblioteca/atualizar/<isbn>', methods=['POST', 'GET'])
+def BibliotecaAtualizar(isbn):
+    lib = Library()
+    method = request.method
+
+    if method == 'GET':
+        book = lib.FindBook(isbn)
+        if book != None:
+            return render_template('update.html', data=book), 200
+        return jsonify({"message":"Recurso nao localizado"}), 404
+
+    else:
+        return lib.UpdateBook(isbn)
 
 if __name__ == "__main__":
     app.run(debug=True)

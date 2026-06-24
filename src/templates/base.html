@@ -38,7 +38,7 @@
                             <td class="text-center">{{ value }}</td>
                         {% endfor %}
                         <td class="text-center" style="padding: 2px 0;display: flex;justify-content: center;">
-                            <form action=" {{ "biblioteca/deletar/" + book["isbn"] }} "  method="POST" style="width: fit-content;">
+                            <form action=" {{ url_for('BibliotecaDeletar', isbn=book['isbn']) }} "  method="POST" style="width: fit-content;">
                                 <input type="submit" class="form-control-sm" class="button" value="Deletar">
                             </form>
                         </td>

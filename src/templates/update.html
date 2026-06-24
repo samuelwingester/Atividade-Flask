@@ -9,19 +9,19 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-    <form action="{{ url_for('Biblioteca') }}" method="post">
+    <form action="{{ url_for('BibliotecaAtualizar', isbn=data['isbn']) }}" method="post">
         <h3>Criar Livro</h3>
         <div class="row mb-3">
             <div class="col">
                 <div class="mb-3">
                     <label for="titulo" class="form-label">ISBN</label>
-                    <input type="text" class="form-control-sm" id="isbn" name="isbn" required>
+                    <input type="text" class="form-control-sm" id="isbn" name="isbn" required value="{{ data['isbn'] }}">
                 </div>
             </div>
             <div class="col">
                 <div class="mb-3">
                     <label for="status" class="form-label">Status</label>
-                    <input type="text" class="form-control-sm" id="status" name="status" required>
+                    <input type="text" class="form-control-sm" id="status" name="status" required value="{{ data['status'] }}">
                 </div>
             </div>
         </div>
@@ -29,47 +29,47 @@
             <div class="col">
                 <div class="mb-3">
                     <label for="paginas" class="form-label">Paginas</label>
-                    <input type="text" class="form-control-sm" id="paginas" name="paginas" required>
+                    <input type="text" class="form-control-sm" id="paginas" name="paginas" required value="{{ data['paginas'] }}">
                 </div>
             </div>
             <div class="col">
                 <div class="mb-3">
                     <label for="ano_publicacao" class="form-label">Ano de Publicação</label>
-                    <input type="text" class="form-control-sm" id="ano_publicacao" name="ano_publicacao" required>
+                    <input type="text" class="form-control-sm" id="ano_publicacao" name="ano_publicacao" required value="{{ data['ano_publicacao'] }}">
                 </div>
             </div>
         </div>
         <div class="row mb-3">
             <label for="titulo" class="col-sm-2 col-form-label">Titulo</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control-sm" id="titulo" name="titulo" required>
+                <input type="text" class="form-control-sm" id="titulo" name="titulo" required value="{{ data['titulo'] }}">
             </div>
         </div>
         <div class="row mb-3">
             <label for="autor" class="col-sm-2 col-form-label">Autor</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control-sm" id="autor" name="autor" required>
+                <input type="text" class="form-control-sm" id="autor" name="autor" required value="{{ data['autor'] }}">
             </div>
         </div>
         <div class="row mb-3">
             <label for="genero" class="col-sm-2 col-form-label">Genero</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control-sm" id="genero" name="genero" required>
+                <input type="text" class="form-control-sm" id="genero" name="genero" required value="{{ data['genero'] }}">
             </div>
         </div>
         <div class="row mb-3">
             <label for="editora" class="col-sm-2 col-form-label">Editora</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control-sm" id="editora" name="editora" required>
+                <input type="text" class="form-control-sm" id="editora" name="editora" required value="{{ data['editora'] }}">
             </div>
         </div>
         <div class="row mb-3">
             <label for="localizacao" class="col-sm-2 col-form-label">Localização</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control-sm" id="localizacao" name="localizacao" required>
+                <input type="text" class="form-control-sm" id="localizacao" name="localizacao" required value="{{ data['localizacao'] }}">
             </div>
         </div>
-        <input type="submit" value="Criar" class="form-control-sm" class="button">
+        <input type="submit" value="Atualizar" class="form-control-sm" class="button">
     </form>
 </body>
 </html>

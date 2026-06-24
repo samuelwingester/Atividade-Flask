@@ -20,6 +20,18 @@ class Library:
             if self.data[i]["isbn"] == isbn:
                 return i
         return None
+    
+    def GetRequestData(self):
+        #Verifica o formato dos dados passados na requisição e normaliza para dict
+        if request.is_json: 
+            #JSON
+            return request.get_json()
+
+        elif request.content_type == 'application/x-www-form-urlencoded': 
+            #FORM
+            return request.form.to_dict()
+        
+        return None
 
     def GetList(self):
         return render_template('base.html', data=self.data), 200
@@ -31,13 +43,7 @@ class Library:
         return jsonify(book), 200
 
     def InsertBook(self):
-        book = None
-
-        if request.is_json: 
-            book = request.get_json()
-
-        elif request.content_type == 'application/x-www-form-urlencoded': 
-            book = request.form.to_dict()
+        book = self.GetRequestData()
 
         if book != None:
             self.data.append(book)
@@ -59,15 +65,19 @@ class Library:
         return {"message":"Recuro deletado com sucesso"}, 200
 
     def UpdateBook(self, isbn):
-        newinfo = request.get_json()
-        index = self.FindIndex(isbn)
+        newbook = self.GetRequestData()
 
-        if index is None:
-            return jsonify({"message":"Recurso nao localizado"}), 404
+        if newbook != None:
+            index = self.FindIndex(isbn)
 
-        for key, value in newinfo.items():
-            self.data[index][key] = value
+            if index is None:
+                return jsonify({"message":"Recurso nao localizado"}), 404
 
-        Data().save(self.data)
+            for key, value in newbook.items():
+                self.data[index][key] = value
 
-        return jsonify({"message":"Recuro atualizado com sucesso"}), 200
+            Data().save(self.data)
+
+            return redirect(url_for('Biblioteca'))
+        
+        return redirect(url_for('BibliotecaAtualizar'))
